@@ -5,7 +5,7 @@ import math
 from streamlit_webrtc import webrtc_streamer, RTCConfiguration,  WebRtcMode
 import av
 
-model = YOLO('./yolov8n.pt', verbose=False)
+model = YOLO('./yolov8n.pt',)
 
 # cap = cv2.VideoCapture(0)
 # cap.set(3,640) # width
@@ -34,7 +34,7 @@ class VideoProcess():
                 cvzone.putTextRect(frm, f'{classNames[cls]} {conf}', (max(0, x1), max(35, y1)), scale=1, thickness=1)
         return av.VideoFrame.from_ndarray(frm, format='bgr24')
 
-classNames = ["person", "bicycle", "car", "motorbike", "aeroplane", "bus", "train", "truck", "boat",
+classNames = ["person", "bicycle", "car", "motorbike", "airplane", "bus", "train", "truck", "boat",
               "traffic light", "fire hydrant", "stop sign", "parking meter", "bench", "bird", "cat",
               "dog", "horse", "sheep", "cow", "elephant", "bear", "zebra", "giraffe", "backpack", "umbrella",
               "handbag", "tie", "suitcase", "frisbee", "skis", "snowboard", "sports ball", "kite", "baseball bat",
