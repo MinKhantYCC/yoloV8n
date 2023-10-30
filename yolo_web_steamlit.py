@@ -2,7 +2,7 @@ from ultralytics import YOLO
 import cv2
 import cvzone
 import math
-from streamlit_webrtc import webrtc_streamer
+from streamlit_webrtc import webrtc_streamer, RTCConfiguration
 import av
 
 model = YOLO('./yolov8n.pt')
@@ -46,4 +46,7 @@ classNames = ["person", "bicycle", "car", "motorbike", "aeroplane", "bus", "trai
               "teddy bear", "hair drier", "toothbrush"
               ]
 
-webrtc_streamer(key='Video', video_processor_factory=VideoProcess)
+webrtc_streamer(key='Video', video_processor_factory=VideoProcess,
+                rtc_configuration=RTCConfiguration(
+                    {"iceServers": [{'urls':["stun:stun.l.google.com:19302"]}]}
+                ))
