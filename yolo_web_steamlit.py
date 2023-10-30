@@ -5,7 +5,7 @@ import math
 from streamlit_webrtc import webrtc_streamer, RTCConfiguration,  WebRtcMode
 import av
 
-model = YOLO('./yolov8n.pt')
+model = YOLO('./yolov8n.pt', verbose=False)
 
 # cap = cv2.VideoCapture(0)
 # cap.set(3,640) # width
@@ -14,7 +14,7 @@ model = YOLO('./yolov8n.pt')
 class VideoProcess():
     def recv(self, frame):
         frm = frame.to_ndarray(format='bgr24')
-        results = model(frm, stream=True)
+        results = model(frm, stream=True, verbose=False)
         for r in results:
             boxes = r.boxes
             for box in boxes:
