@@ -11,7 +11,7 @@ model = YOLO('./yolov8n.pt',)
 # cap.set(3,640) # width
 # cap.set(4,360) # height
 
-class VideoProcess():
+class VideoProcess:
     def recv(self, frame):
         frm = frame.to_ndarray(format='bgr24')
         results = model(frm, stream=True, verbose=False)
